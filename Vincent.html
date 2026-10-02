@@ -1467,17 +1467,17 @@
             object-fit: contain;
             border-radius: 12px;
             box-shadow: 0 30px 90px rgba(0,0,0,.55);
-            cursor: zoom-out;
+            cursor: zoom-in;
             user-select: none;
             -webkit-user-select: none;
+            transition: transform .3s ease;
+            transform: scale(1);
+            transform-origin: center center;
         }
 
         .media-lightbox-media.zoomed {
-            max-width: none;
-            max-height: none;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            cursor: zoom-out;
+            transform: scale(1.8);
         }
 
         .media-lightbox-close {
@@ -2667,10 +2667,16 @@
                     media.draggable = false;
                 }
 
-                /* Clicking the media itself toggles zoom out. */
+                /* Single click does nothing after fullscreen opens. */
                 media.addEventListener("click", event => {
                     event.stopPropagation();
-                    closeLightbox();
+                });
+
+                /* Double-click toggles zoom in / zoom out. */
+                media.addEventListener("dblclick", event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    media.classList.toggle("zoomed");
                 });
 
                 lightboxContainer.appendChild(media);
@@ -2697,13 +2703,9 @@
                 document.body.classList.add("lightbox-open");
 
                 /*
-                 * Small delay allows the media to render before applying
-                 * the full-screen zoom appearance.
+                 * First click opens fullscreen at normal size.
+                 * Zoom is activated only by double-clicking.
                  */
-                requestAnimationFrame(() => {
-                    const media = lightboxContainer.querySelector(".media-lightbox-media");
-                    if (media) media.classList.add("zoomed");
-                });
             }
 
             function closeLightbox() {
@@ -2712,7 +2714,6 @@
                    to play after repeated clicks. */
                 lightboxContainer.querySelectorAll("video").forEach(video => {
                     video.pause();
-                    video.currentTime = video.currentTime;
                 });
 
                 lightbox.classList.remove("active");
