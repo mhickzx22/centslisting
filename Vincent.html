@@ -2663,12 +2663,38 @@
                     media.controls = true;
                     media.playsInline = true;
                     media.autoplay = false;
+
+                    /* Keep mobile browsers in the custom lightbox instead of
+                       switching the video into native fullscreen playback. */
+                    media.setAttribute("playsinline", "");
+                    media.setAttribute("webkit-playsinline", "");
+                    media.removeAttribute("autoplay");
                 } else {
                     media.draggable = false;
                 }
 
                 /* Single click does nothing after fullscreen opens. */
                 media.addEventListener("click", event => {
+                    /* Mobile video controls can fire a click on the video
+                       itself. Keep that interaction inside the lightbox. */
+                    event.stopPropagation();
+                });
+
+                /* Also isolate touch/pointer events from the lightbox
+                   background. This is important for mobile play controls. */
+                media.addEventListener("touchstart", event => {
+                    event.stopPropagation();
+                }, { passive: true });
+
+                media.addEventListener("touchend", event => {
+                    event.stopPropagation();
+                }, { passive: true });
+
+                media.addEventListener("pointerdown", event => {
+                    event.stopPropagation();
+                });
+
+                media.addEventListener("pointerup", event => {
                     event.stopPropagation();
                 });
 
