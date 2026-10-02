@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vincent Borromeo | Real Estate Manager</title>
+
+    <style>
+
+        /* =========================================================
+           BASIC RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           ANIMATED BACKGROUND
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(212, 175, 55, 0.14),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(37, 99, 235, 0.12),
+                    transparent 35%
+                ),
+                #050914;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .3;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: #d4af37;
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #2563eb;
+            right: -150px;
+            top: 35%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: #7c3aed;
+            bottom: -150px;
+            left: 40%;
+            animation-delay: -8s;
+        }
+
+        @keyframes orbFloat {
+
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(40px, -40px);
+            }
+
+        }
+
+
+        /* =========================================================
+           ARCHITECTURAL GRID
+        ========================================================= */
+
+        .architectural-grid {
+
+            position: absolute;
+
+            width: 160%;
+            height: 65%;
+
+            left: -30%;
+            bottom: -10%;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.04) 1px,
+                    transparent 1px
+                );
+
+            background-size: 60px 60px;
+
+            transform:
+                perspective(600px)
+                rotateX(60deg);
+
+            mask-image:
+                linear-gradient(
+                    to top,
+                    black,
+                    transparent
+                );
+
+            animation:
+                gridMove 15s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(60px);
+            }
+
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        nav {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            background:
+                rgba(5,9,20,.75);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.08);
+        }
+
+        .nav-container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                18px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+        }
+
+        .logo {
+
+            color: white;
+
+            font-size: 21px;
+
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+
+            color:
+                rgba(255,255,255,.7);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                130px 25px
+                80px;
+        }
+
+        .hero-container {
+
+            max-width: 1200px;
+
+            width: 100%;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .eyebrow {
+
+            color: #d4af37;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform:
+                uppercase;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(48px,7vw,82px);
+
+            line-height: .95;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+
+            display: block;
+
+            color: #d4af37;
+        }
+
+        .hero-description {
+
+            max-width: 600px;
+
+            color:
+                rgba(255,255,255,.62);
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                14px 23px;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+
+            color: #111827;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5d76e,
+                    #b8860b
+                );
+        }
+
+        .btn-primary:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 40px
+                rgba(212,175,55,.3);
+        }
+
+        .btn-outline {
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                rgba(255,255,255,.04);
+        }
+
+        .btn-outline:hover {
+
+            background:
+                rgba(255,255,255,.1);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* =========================================================
+           PROFILE PHOTO
+        ========================================================= */
+
+        .profile-area {
+
+            display: flex;
+
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .profile-wrapper {
+
+            width: 390px;
+            height: 460px;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .profile-glow {
+
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,.28),
+                    transparent 65%
+                );
+
+            filter: blur(20px);
+        }
+
+        .profile-photo {
+
+            width: 300px;
+            height: 390px;
+
+            object-fit: cover;
+
+            border-radius: 160px 160px 25px 25px;
+
+            position: relative;
+
+            z-index: 2;
+
+            border:
+                2px solid
+                rgba(212,175,55,.6);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1e293b,
+                    #0f172a
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.5);
+
+            transition: .5s;
+        }
+
+        .profile-photo:hover {
+
+            transform:
+                scale(1.02)
+                translateY(-5px);
+
+            box-shadow:
+                0 40px 100px
+                rgba(212,175,55,.15);
+        }
+
+        /* Profile placeholder */
+
+        .profile-placeholder {
+
+            position: absolute;
+
+            z-index: 1;
+
+            color:
+                rgba(255,255,255,.3);
+
+            text-align: center;
+
+            font-size: 14px;
+
+            width: 250px;
+        }
+
+
+        /* floating badge */
+
+        .profile-badge {
+
+            position: absolute;
+
+            z-index: 4;
+
+            bottom: 35px;
+            right: 0;
+
+            padding:
+                16px 20px;
+
+            background:
+                rgba(15,23,42,.8);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            backdrop-filter:
+                blur(15px);
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,.3);
+
+            animation:
+                badgeFloat 5s ease-in-out infinite;
+        }
+
+        .profile-badge strong {
+
+            display: block;
+
+            color: #d4af37;
+
+            font-size: 15px;
+
+            margin-bottom: 3px;
+        }
+
+        .profile-badge span {
+
+            color:
+                rgba(255,255,255,.6);
+
+            font-size: 11px;
+        }
+
+        @keyframes badgeFloat {
+
+            0%,100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px);
+            }
+
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
+
+        .section {
+
+            padding:
+                110px 25px;
+        }
+
+        .section-container {
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 55px;
+        }
+
+        .section-title small {
+
+            color: #d4af37;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform:
+                uppercase;
+        }
+
+        .section-title h2 {
+
+            font-size:
+                clamp(34px,5vw,52px);
+
+            margin-top: 10px;
+        }
+
+        .section-title p {
+
+            max-width: 650px;
+
+            margin:
+                15px auto 0;
+
+            color:
+                rgba(255,255,255,.55);
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           GLASS
+        ========================================================= */
+
+        .glass {
+
+            background:
+                rgba(255,255,255,.045);
+
+            border:
+                1px solid
+                rgba(255,255,255,.09);
+
+            backdrop-filter:
+                blur(15px);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,.15);
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .about-card {
+
+            padding: 40px;
+
+            border-radius: 20px;
+        }
+
+        .about-card h3 {
+
+            font-size: 28px;
+
+            margin-bottom: 18px;
+        }
+
+        .about-card p {
+
+            color:
+                rgba(255,255,255,.58);
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================================================
+           PRESENTATION / PORTFOLIO
+        ========================================================= */
+
+        .portfolio {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 22px;
+        }
+
+        .property {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            min-height: 380px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,.1);
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
+        }
+
+        .property:active {
+            cursor: grabbing;
+        }
+
+        .property-slider {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .property-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform .45s ease;
+            will-change: transform;
+        }
+
+        .property-slide {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .property-slide img {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .property-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    transparent 30%,
+                    rgba(0,0,0,.9)
+                );
+        }
+
+        .property-overlay small {
+            color: #d4af37;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .property-overlay h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .property-overlay p {
+            color: rgba(255,255,255,.65);
+            font-size: 13px;
+        }
+
+        .property-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.2);
+            background: rgba(5,9,20,.65);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: .3s;
+            opacity: .85;
+        }
+
+        .property-arrow:hover {
+            background: rgba(212,175,55,.9);
+            color: #111827;
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .property-prev {
+            left: 15px;
+        }
+
+        .property-next {
+            right: 15px;
+        }
+
+        .property-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 7px;
+            padding: 7px 10px;
+            border-radius: 20px;
+            background: rgba(0,0,0,.45);
+            backdrop-filter: blur(8px);
+        }
+
+        .property-dot {
+            width: 7px;
+            height: 7px;
+            border: 0;
+            border-radius: 50%;
+            padding: 0;
+            background: rgba(255,255,255,.45);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .property-dot.active {
+            width: 22px;
+            border-radius: 10px;
+            background: #d4af37;
+        }
+
+        .property-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: rgba(5,9,20,.65);
+            backdrop-filter: blur(8px);
+            color: rgba(255,255,255,.85);
+            font-size: 11px;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        @media (max-width: 850px) {
+            .property-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 19px;
+            }
+
+            .property-prev {
+                left: 10px;
+            }
+
+            .property-next {
+                right: 10px;
+            }
+
+            .property-overlay {
+                padding: 20px;
+            }
+
+            .property-overlay h3 {
+                font-size: 20px;
+            }
+        }
+
+
+        /* =========================================================
+           SERVICES
+        ========================================================= */
+
+        .services {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 20px;
+        }
+
+        .service {
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            transition: .4s;
+        }
+
+        .service:hover {
+
+            transform:
+                translateY(-8px);
+
+            border-color:
+                rgba(212,175,55,.35);
+        }
+
+        .service-icon {
+
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(212,175,55,.1);
+
+            color: #d4af37;
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        .service h3 {
+
+            margin-bottom: 10px;
+        }
+
+        .service p {
+
+            color:
+                rgba(255,255,255,.55);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-box {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding:
+                60px 35px;
+
+            border-radius: 25px;
+
+            text-align: center;
+        }
+
+        .contact-box h2 {
+
+            font-size:
+                clamp(34px,5vw,52px);
+
+            margin:
+                10px 0 15px;
+        }
+
+        .contact-box p {
+
+            color:
+                rgba(255,255,255,.55);
+
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 30px;
+        }
+
+        .contact-details a {
+
+            color: white;
+
+            padding:
+                12px 18px;
+
+            border-radius: 8px;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            transition: .3s;
+        }
+
+        .contact-details a:hover {
+
+            color: #d4af37;
+
+            border-color:
+                rgba(212,175,55,.4);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            padding:
+                30px 20px;
+
+            text-align: center;
+
+            color:
+                rgba(255,255,255,.4);
+
+            font-size: 13px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+        }
+
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align: center;
+            }
+
+            .hero-description {
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+
+                justify-content:
+                    center;
+            }
+
+            .profile-wrapper {
+
+                transform:
+                    scale(.85);
+
+                margin:
+                    -20px auto;
+            }
+
+            .about-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .portfolio {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .services {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero h1 {
+
+                font-size: 50px;
+
+                letter-spacing: -2px;
+            }
+
+            .profile-wrapper {
+
+                transform:
+                    scale(.72);
+
+                margin:
+                    -50px auto;
+            }
+
+            .section {
+
+                padding:
+                    80px 20px;
+            }
+
+            .about-card {
+
+                padding: 28px;
+            }
+
+            .service {
+
+                padding: 28px;
+            }
+
+            .contact-box {
+
+                padding:
+                    45px 20px;
+            }
+
+            .contact-details {
+
+                flex-direction:
+                    column;
+            }
+
+        }
+
+    
+        /* ===== GLASSMORPHISM ENHANCEMENT ===== */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.065);
+            --glass-bg-strong: rgba(255, 255, 255, 0.095);
+            --glass-border: rgba(255, 255, 255, 0.14);
+            --glass-highlight: rgba(255, 255, 255, 0.20);
+            --glass-shadow: 0 20px 55px rgba(0, 0, 0, 0.32);
+            --glass-blur: 18px;
+        }
+
+        .nav {
+            background: rgba(5, 9, 20, 0.48) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.16);
+            backdrop-filter: blur(22px) saturate(145%);
+            -webkit-backdrop-filter: blur(22px) saturate(145%);
+        }
+
+        .hero-card,
+        .about-card,
+        .property,
+        .service-card,
+        .contact-card {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.105),
+                rgba(255, 255, 255, 0.035)
+            ) !important;
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.025),
+                var(--glass-shadow);
+            backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+        }
+
+        .hero-card::before,
+        .about-card::before,
+        .property::before,
+        .service-card::before,
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.13) 0%,
+                rgba(255, 255, 255, 0.025) 38%,
+                transparent 62%
+            );
+            opacity: 0.8;
+        }
+
+        .property,
+        .service-card,
+        .contact-card,
+        .about-card,
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .property:hover,
+        .service-card:hover,
+        .contact-card:hover,
+        .about-card:hover {
+            border-color: rgba(212, 175, 55, 0.28);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                0 25px 65px rgba(0, 0, 0, 0.38),
+                0 0 35px rgba(212, 175, 55, 0.07);
+        }
+
+        .property-slider {
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 12px 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .property-arrow,
+        .property-counter,
+        .property-dot {
+            backdrop-filter: blur(14px) saturate(145%);
+            -webkit-backdrop-filter: blur(14px) saturate(145%);
+        }
+
+        .property-arrow {
+            background: rgba(5, 9, 20, 0.48) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .property-counter {
+            background: rgba(5, 9, 20, 0.46) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .property-dot {
+            background: rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .property-dot.active {
+            background: rgba(212, 175, 55, 0.92) !important;
+            box-shadow: 0 0 14px rgba(212, 175, 55, 0.32);
+        }
+
+        .btn {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                0 12px 28px rgba(0, 0, 0, 0.22);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .contact-link {
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        @media (max-width: 850px) {
+            .nav {
+                background: rgba(5, 9, 20, 0.62) !important;
+                backdrop-filter: blur(20px) saturate(140%);
+                -webkit-backdrop-filter: blur(20px) saturate(140%);
+            }
+
+            .hero-card,
+            .about-card,
+            .property,
+            .service-card,
+            .contact-card {
+                backdrop-filter: blur(14px) saturate(140%);
+                -webkit-backdrop-filter: blur(14px) saturate(140%);
+            }
+        }
+
+    
+        .contact-link a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-link a:hover {
+            color: #d4af37;
+        }
+        
+        /* ===== SOCIAL MEDIA ICONS ===== */
+        .social-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .social-links a {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            color: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            text-decoration: none;
+            font-size: 19px;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 10px 25px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(14px) saturate(145%);
+            -webkit-backdrop-filter: blur(14px) saturate(145%);
+            transition: transform 0.25s ease, color 0.25s ease,
+                        background 0.25s ease, border-color 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-4px);
+            color: #d4af37;
+            background: rgba(212, 175, 55, 0.10);
+            border-color: rgba(212, 175, 55, 0.34);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.13),
+                0 14px 30px rgba(0, 0, 0, 0.30),
+                0 0 22px rgba(212, 175, 55, 0.10);
+        }
+
+        .social-links i {
+            line-height: 1;
+        }
+
+        @media (max-width: 500px) {
+            .social-links a {
+                width: 43px;
+                height: 43px;
+                font-size: 18px;
+            }
+        }
+
+
+        /* =========================================================
+           FULLSCREEN MEDIA ZOOM / LIGHTBOX
+           Click featured image/video = zoom in
+           Click media again = zoom out
+           Slider arrows/dots remain available while zoomed
+        ========================================================= */
+
+        .media-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .media-lightbox.active {
+            display: flex;
+        }
+
+        .media-lightbox-content {
+            position: relative;
+            width: min(96vw, 1500px);
+            height: min(92vh, 900px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+
+        .media-lightbox-media {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 30px 90px rgba(0,0,0,.55);
+            cursor: zoom-out;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .media-lightbox-media.zoomed {
+            max-width: none;
+            max-height: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .media-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 20;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 50%;
+            background: rgba(5,9,20,.62);
+            color: white;
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .media-lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 20;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 50%;
+            background: rgba(5,9,20,.62);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .media-lightbox-arrow:hover,
+        .media-lightbox-close:hover {
+            background: rgba(212,175,55,.9);
+            color: #111827;
+        }
+
+        .media-lightbox-prev {
+            left: 18px;
+        }
+
+        .media-lightbox-next {
+            right: 18px;
+        }
+
+        .media-lightbox-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            z-index: 20;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+            padding: 8px 11px;
+            border-radius: 20px;
+            background: rgba(0,0,0,.48);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .media-lightbox-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.45);
+            cursor: pointer;
+        }
+
+        .media-lightbox-dot.active {
+            width: 22px;
+            border-radius: 10px;
+            background: #d4af37;
+        }
+
+        .media-lightbox-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 20;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: rgba(5,9,20,.62);
+            color: rgba(255,255,255,.9);
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .media-lightbox {
+                padding: 10px;
+            }
+
+            .media-lightbox-content {
+                width: 100vw;
+                height: 94vh;
+            }
+
+            .media-lightbox-arrow {
+                width: 42px;
+                height: 42px;
+                font-size: 23px;
+            }
+
+            .media-lightbox-prev {
+                left: 8px;
+            }
+
+            .media-lightbox-next {
+                right: 8px;
+            }
+
+            .media-lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .media-lightbox-counter {
+                top: 12px;
+                left: 12px;
+            }
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================== -->
+
+    <div class="background">
+
+        <div class="orb orb-1"></div>
+
+        <div class="orb orb-2"></div>
+
+        <div class="orb orb-3"></div>
+
+        <div class="architectural-grid"></div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a href="#home" class="logo" aria-label="Back to top">
+                Vincent<span>.</span>
+            </a>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#portfolio">
+                        Portfolio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#services">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-container">
+
+
+            <div class="reveal">
+
+                <div class="eyebrow">
+                    Real Estate Manager
+                </div>
+
+                <h1>
+
+                    Vincent
+
+                    <span>
+                        Borromeo
+                    </span>
+
+                </h1>
+
+                <p class="hero-description">
+
+                    Helping clients explore real estate
+                    opportunities, manage properties, and
+                    make confident decisions about their
+                    next investment.
+
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="#portfolio"
+                        class="btn btn-primary"
+                    >
+                        View My Presentation
+                    </a>
+
+                    <a
+                        href="#contact"
+                        class="btn btn-outline"
+                    >
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PROFILE PHOTO
+            ================================================== -->
+
+            <div class="profile-area reveal">
+
+                <div class="profile-wrapper">
+
+                    <div class="profile-glow"></div>
+
+
+                    <!--
+                    =================================================
+                    PROFILE PHOTO
+
+                    CHANGE THIS:
+
+                    images/profile.jpg
+
+                    Put your actual profile photo inside an
+                    "images" folder.
+
+                    Example:
+
+                    project-folder/
+                    ├── index.html
+                    └── images/
+                        └── profile.jpg
+
+                    =================================================
+                    -->
+
+                    <img
+                        src="Profilepicture.jpg"
+                        alt="Vincent Borromeo"
+                        class="profile-photo"
+                    >
+
+
+                    <div class="profile-badge">
+
+                        <strong>
+                            Real Estate
+                        </strong>
+
+                        <span>
+                            Professional Management
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================== -->
+
+    <section
+        class="section"
+        id="about"
+    >
+
+        <div class="section-container">
+
+
+            <div class="section-title reveal">
+
+                <small>
+                    About Me
+                </small>
+
+                <h2>
+                    Professional.
+                    Personal.
+                    Reliable.
+                </h2>
+
+                <p>
+                    A personal approach to real estate
+                    management and property services.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+
+                <div class="about-card glass reveal">
+
+                    <h3>
+                        About Vincent
+                    </h3>
+
+                    <p>
+
+                        I am Vincent Borromeo,
+                        a Real Estate Manager focused on
+                        helping clients navigate their
+                        property needs.
+
+                    </p>
+
+                    <p>
+
+                        My goal is to provide clear
+                        communication, organized
+                        coordination, and professional
+                        service throughout the property
+                        journey.
+
+                    </p>
+
+                </div>
+
+
+                <div class="about-card glass reveal">
+
+                    <h3>
+                        My Approach
+                    </h3>
+
+                    <p>
+
+                        Every client has different goals.
+                        I take the time to understand what
+                        matters to you before discussing
+                        available opportunities.
+
+                    </p>
+
+                    <p>
+
+                        Whether you're looking for a property,
+                        selling, or managing real estate,
+                        I aim to make the process simple
+                        and straightforward.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         PROPERTY PRESENTATION / PORTFOLIO
+    ========================================================== -->
+
+    <section
+        class="section"
+        id="portfolio"
+    >
+
+        <div class="section-container">
+
+
+            <div class="section-title reveal">
+
+                <small>
+                    My Presentation
+                </small>
+
+                <h2>
+                    Featured Properties
+                </h2>
+
+                <p>
+
+                    Showcase your properties, projects,
+                    listings, achievements, or sample
+                    presentations here.
+
+                </p>
+
+            </div>
+
+
+            <div class="portfolio">
+
+                <!-- =================================================
+                     PROPERTY 1
+                ================================================== -->
+
+                <div class="property reveal" data-slider>
+
+                    <div class="property-slider">
+                        <div class="property-track">
+
+                            <div class="property-slide">
+                                <img src="modernproterty1.jpg" alt="Modern Residence - View 1">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="modernproterty2.jpg" alt="Modern Residence - View 2">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="modernproterty3.jpg" alt="Modern Residence - View 3">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="modernproterty4.jpg" alt="Modern Residence - View 4">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="property-arrow property-prev" type="button" aria-label="Previous image">‹</button>
+                    <button class="property-arrow property-next" type="button" aria-label="Next image">›</button>
+
+                    <div class="property-counter">
+                        <span class="current-slide">1</span> /
+                        <span class="total-slides">4</span>
+                    </div>
+
+                    <div class="property-dots"></div>
+
+                    <div class="property-overlay">
+                        <small>FEATURED PROPERTY</small>
+                        <h3>Modern Residence</h3>
+                        <p>Add your property description here.</p>
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROPERTY 2
+                ================================================== -->
+
+                <div class="property reveal" data-slider>
+
+                    <div class="property-slider">
+                        <div class="property-track">
+
+                            <div class="property-slide">
+                                <video
+                                     src="centvideo.mp4"
+                                     controls
+                                     playsinline
+                                     preload="metadata">
+                                </video>
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property2-2.jpg" alt="Premium Property - View 2">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property2-3.jpg" alt="Premium Property - View 3">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property2-4.jpg" alt="Premium Property - View 4">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="property-arrow property-prev" type="button" aria-label="Previous image">‹</button>
+                    <button class="property-arrow property-next" type="button" aria-label="Next image">›</button>
+
+                    <div class="property-counter">
+                        <span class="current-slide">1</span> /
+                        <span class="total-slides">4</span>
+                    </div>
+
+                    <div class="property-dots"></div>
+
+                    <div class="property-overlay">
+                        <small>PROPERTY PRESENTATION</small>
+                        <h3>Premium Property</h3>
+                        <p>Add your property description here.</p>
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROPERTY 3
+                ================================================== -->
+
+                <div class="property reveal" data-slider>
+
+                    <div class="property-slider">
+                        <div class="property-track">
+
+                            <div class="property-slide">
+                                <img src="images/property3.jpg" alt="Investment Opportunity - View 1">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property3-2.jpg" alt="Investment Opportunity - View 2">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property3-3.jpg" alt="Investment Opportunity - View 3">
+                            </div>
+
+                            <div class="property-slide">
+                                <img src="images/property3-4.jpg" alt="Investment Opportunity - View 4">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="property-arrow property-prev" type="button" aria-label="Previous image">‹</button>
+                    <button class="property-arrow property-next" type="button" aria-label="Next image">›</button>
+
+                    <div class="property-counter">
+                        <span class="current-slide">1</span> /
+                        <span class="total-slides">4</span>
+                    </div>
+
+                    <div class="property-dots"></div>
+
+                    <div class="property-overlay">
+                        <small>REAL ESTATE</small>
+                        <h3>Investment Opportunity</h3>
+                        <p>Add your property description here.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SERVICES
+    ========================================================== -->
+
+    <section
+        class="section"
+        id="services"
+    >
+
+        <div class="section-container">
+
+
+            <div class="section-title reveal">
+
+                <small>
+                    What I Do
+                </small>
+
+                <h2>
+                    Real Estate Services
+                </h2>
+
+            </div>
+
+
+            <div class="services">
+
+
+                <div class="service glass reveal">
+
+                    <div class="service-icon">
+                        🏠
+                    </div>
+
+                    <h3>
+                        Property Sales
+                    </h3>
+
+                    <p>
+
+                        Assistance with property inquiries,
+                        listings, viewings, coordination,
+                        and sales-related requirements.
+
+                    </p>
+
+                </div>
+
+
+                <div class="service glass reveal">
+
+                    <div class="service-icon">
+                        🔑
+                    </div>
+
+                    <h3>
+                        Property Management
+                    </h3>
+
+                    <p>
+
+                        Professional coordination and
+                        management of real estate properties
+                        and related requirements.
+
+                    </p>
+
+                </div>
+
+
+                <div class="service glass reveal">
+
+                    <div class="service-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Property Opportunities
+                    </h3>
+
+                    <p>
+
+                        Helping clients explore available
+                        property opportunities according
+                        to their requirements.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================== -->
+
+    <section
+        class="section"
+        id="contact"
+    >
+
+        <div class="contact-box glass reveal">
+
+            <small
+                style="
+                    color:#d4af37;
+                    font-weight:700;
+                    letter-spacing:2px;
+                "
+            >
+                LET'S CONNECT
+            </small>
+
+            <h2>
+                Let's Talk Real Estate
+            </h2>
+
+            <p>
+
+                Have a property inquiry, investment
+                opportunity, or simply want to discuss
+                your real estate needs?
+
+            </p>
+
+
+            <div class="contact-details">
+
+                <a
+                    href="tel:09616209218"
+                >
+                    📞 <a href="tel:09616209218">0961 620 9218</a>
+                </a>
+
+                <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=centslistingofficial@gmail.com" target="_blank" rel="noopener"
+                >
+                    ✉️ centslistingofficial@gmail.com
+                </a>
+
+            </div>
+
+
+            <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=centslistingofficial@gmail.com" target="_blank" rel="noopener"
+                class="btn btn-primary"
+            >
+                Send Me an Email →
+            </a>
+
+        </div>
+
+    
+                    <div class="social-links" aria-label="Social media links">
+                        <a href="https://www.facebook.com/centsbusiness" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/centsworld_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@centslisting?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+
+                </section>
+
+
+
+
+    <!-- =========================================================
+         FULLSCREEN MEDIA ZOOM / LIGHTBOX
+    ========================================================== -->
+    <div class="media-lightbox" id="mediaLightbox" aria-hidden="true">
+        <div class="media-lightbox-content">
+
+            <button class="media-lightbox-close"
+                    type="button"
+                    aria-label="Zoom out / close">×</button>
+
+            <button class="media-lightbox-arrow media-lightbox-prev"
+                    type="button"
+                    aria-label="Previous slide">‹</button>
+
+            <div class="media-lightbox-counter">
+                <span id="lightboxCurrent">1</span> /
+                <span id="lightboxTotal">1</span>
+            </div>
+
+            <div id="lightboxMediaContainer"
+                 style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+            </div>
+
+            <button class="media-lightbox-arrow media-lightbox-next"
+                    type="button"
+                    aria-label="Next slide">›</button>
+
+            <div class="media-lightbox-dots" id="lightboxDots"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 Vincent Borromeo.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         SCROLL REVEAL
+    ========================================================== -->
+
+    <script>
+
+        /* Logo: return to the top of the page */
+        document.querySelector(".logo")?.addEventListener("click", event => {
+            event.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                (entries) => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("visible");
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
+
+        /* =========================================================
+           FEATURED PROPERTY CAROUSELS
+           Touch swipe + mouse drag + arrows + dots
+        ========================================================= */
+
+        document.querySelectorAll("[data-slider]").forEach(property => {
+
+            const track = property.querySelector(".property-track");
+            const slides = property.querySelectorAll(".property-slide");
+            const prevButton = property.querySelector(".property-prev");
+            const nextButton = property.querySelector(".property-next");
+            const dotsContainer = property.querySelector(".property-dots");
+            const currentSlide = property.querySelector(".current-slide");
+            const totalSlides = property.querySelector(".total-slides");
+
+            let currentIndex = 0;
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            let dragDistance = 0;
+
+            totalSlides.textContent = slides.length;
+
+            slides.forEach((slide, index) => {
+
+                const dot = document.createElement("button");
+
+                dot.type = "button";
+                dot.classList.add("property-dot");
+
+                if (index === 0) {
+                    dot.classList.add("active");
+                }
+
+                dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+
+                dot.addEventListener("click", event => {
+                    event.stopPropagation();
+                    goToSlide(index);
+                });
+
+                dotsContainer.appendChild(dot);
+
+            });
+
+            const dots = dotsContainer.querySelectorAll(".property-dot");
+
+            function goToSlide(index) {
+
+                if (index < 0) {
+                    index = slides.length - 1;
+                }
+
+                if (index >= slides.length) {
+                    index = 0;
+                }
+
+                currentIndex = index;
+
+                track.style.transition = "transform .45s ease";
+
+                track.style.transform =
+                    `translateX(-${currentIndex * 100}%)`;
+
+                currentSlide.textContent = currentIndex + 1;
+
+                dots.forEach((dot, dotIndex) => {
+
+                    dot.classList.toggle(
+                        "active",
+                        dotIndex === currentIndex
+                    );
+
+                });
+
+            }
+
+            nextButton.addEventListener("click", event => {
+                event.stopPropagation();
+                goToSlide(currentIndex + 1);
+            });
+
+            prevButton.addEventListener("click", event => {
+                event.stopPropagation();
+                goToSlide(currentIndex - 1);
+            });
+
+
+            /* =====================================================
+               TOUCH SWIPE
+            ===================================================== */
+
+            property.addEventListener("touchstart", event => {
+
+                if (event.touches.length !== 1) {
+                    return;
+                }
+
+                startX = event.touches[0].clientX;
+                currentX = startX;
+
+            }, { passive: true });
+
+
+            property.addEventListener("touchmove", event => {
+
+                if (event.touches.length !== 1) {
+                    return;
+                }
+
+                currentX = event.touches[0].clientX;
+
+            }, { passive: true });
+
+
+            property.addEventListener("touchend", () => {
+
+                const difference = startX - currentX;
+                const threshold = 50;
+
+                if (Math.abs(difference) > threshold) {
+
+                    if (difference > 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+
+                }
+
+            });
+
+
+            /* =====================================================
+               MOUSE DRAG
+            ===================================================== */
+
+            property.addEventListener("mousedown", event => {
+
+                if (
+                    event.target.closest(
+                        ".property-arrow, .property-dot, video"
+                    )
+                ) {
+                    return;
+                }
+
+                isDragging = true;
+                startX = event.clientX;
+                currentX = startX;
+                dragDistance = 0;
+
+                track.style.transition = "none";
+
+                event.preventDefault();
+
+            });
+
+
+            property.addEventListener("mousemove", event => {
+
+                if (!isDragging) {
+                    return;
+                }
+
+                currentX = event.clientX;
+
+                dragDistance = currentX - startX;
+
+            });
+
+
+            function finishMouseDrag() {
+
+                if (!isDragging) {
+                    return;
+                }
+
+                isDragging = false;
+
+                const threshold = 60;
+
+                if (Math.abs(dragDistance) > threshold) {
+
+                    if (dragDistance < 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+
+                } else {
+                    goToSlide(currentIndex);
+                }
+
+            }
+
+
+            property.addEventListener(
+                "mouseup",
+                finishMouseDrag
+            );
+
+            property.addEventListener(
+                "mouseleave",
+                finishMouseDrag
+            );
+
+
+            /* Prevent browser image dragging */
+
+            property.querySelectorAll("img").forEach(img => {
+
+                img.addEventListener(
+                    "dragstart",
+                    event => event.preventDefault()
+                );
+
+            });
+
+
+            /* =====================================================
+               FULLSCREEN ZOOM
+               Clicking the current image/video opens the lightbox.
+               The lightbox keeps the same slider controls.
+            ===================================================== */
+
+            const lightbox = document.getElementById("mediaLightbox");
+            const lightboxContainer = document.getElementById("lightboxMediaContainer");
+            const lightboxCurrent = document.getElementById("lightboxCurrent");
+            const lightboxTotal = document.getElementById("lightboxTotal");
+            const lightboxDots = document.getElementById("lightboxDots");
+            const lightboxClose = lightbox.querySelector(".media-lightbox-close");
+            const lightboxPrev = lightbox.querySelector(".media-lightbox-prev");
+            const lightboxNext = lightbox.querySelector(".media-lightbox-next");
+
+            function buildLightboxDots() {
+                lightboxDots.innerHTML = "";
+
+                slides.forEach((_, index) => {
+                    const dot = document.createElement("button");
+                    dot.type = "button";
+                    dot.className = "media-lightbox-dot";
+                    dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+
+                    dot.addEventListener("click", event => {
+                        event.stopPropagation();
+                        goToSlide(index);
+                        updateLightboxMedia();
+                    });
+
+                    lightboxDots.appendChild(dot);
+                });
+            }
+
+            function updateLightboxDots() {
+                lightboxDots.querySelectorAll(".media-lightbox-dot")
+                    .forEach((dot, index) => {
+                        dot.classList.toggle("active", index === currentIndex);
+                    });
+            }
+
+            function updateLightboxMedia() {
+                lightboxContainer.innerHTML = "";
+
+                const original = slides[currentIndex].querySelector("img, video");
+
+                if (!original) return;
+
+                const media = original.cloneNode(true);
+                media.classList.add("media-lightbox-media");
+
+                if (media.tagName.toLowerCase() === "video") {
+                    media.controls = true;
+                    media.playsInline = true;
+                    media.autoplay = false;
+                } else {
+                    media.draggable = false;
+                }
+
+                /* Clicking the media itself toggles zoom out. */
+                media.addEventListener("click", event => {
+                    event.stopPropagation();
+                    closeLightbox();
+                });
+
+                lightboxContainer.appendChild(media);
+
+                lightboxCurrent.textContent = currentIndex + 1;
+                lightboxTotal.textContent = slides.length;
+                updateLightboxDots();
+            }
+
+            function openLightbox() {
+                /* Prevent the original carousel video from continuing to play
+                   underneath the fullscreen viewer. */
+                slides.forEach(slide => {
+                    const video = slide.querySelector("video");
+                    if (video) {
+                        video.pause();
+                    }
+                });
+
+                updateLightboxMedia();
+
+                lightbox.classList.add("active");
+                lightbox.setAttribute("aria-hidden", "false");
+                document.body.classList.add("lightbox-open");
+
+                /*
+                 * Small delay allows the media to render before applying
+                 * the full-screen zoom appearance.
+                 */
+                requestAnimationFrame(() => {
+                    const media = lightboxContainer.querySelector(".media-lightbox-media");
+                    if (media) media.classList.add("zoomed");
+                });
+            }
+
+            function closeLightbox() {
+                /* Always pause the fullscreen video before removing it.
+                   This prevents multiple video instances from continuing
+                   to play after repeated clicks. */
+                lightboxContainer.querySelectorAll("video").forEach(video => {
+                    video.pause();
+                    video.currentTime = video.currentTime;
+                });
+
+                lightbox.classList.remove("active");
+                lightbox.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("lightbox-open");
+                lightboxContainer.innerHTML = "";
+            }
+
+            function lightboxGoToSlide(index) {
+                goToSlide(index);
+                if (lightbox.classList.contains("active")) {
+                    updateLightboxMedia();
+                }
+            }
+
+            lightboxNext.addEventListener("click", event => {
+                event.stopPropagation();
+                lightboxGoToSlide(currentIndex + 1);
+            });
+
+            lightboxPrev.addEventListener("click", event => {
+                event.stopPropagation();
+                lightboxGoToSlide(currentIndex - 1);
+            });
+
+            lightboxClose.addEventListener("click", event => {
+                event.stopPropagation();
+                closeLightbox();
+            });
+
+            /* Clicking the dark background also zooms out. */
+            lightbox.addEventListener("click", event => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            /* Open zoom only when the user clicks the media itself. */
+            slides.forEach(slide => {
+                const media = slide.querySelector("img, video");
+
+                if (!media) return;
+
+                media.addEventListener("click", event => {
+                    event.stopPropagation();
+
+                    /*
+                     * Video elements have their own native click/play behavior.
+                     * Stop that native action so repeated clicks cannot create
+                     * multiple playing states while opening the fullscreen view.
+                     */
+                    if (media.tagName.toLowerCase() === "video") {
+                        event.preventDefault();
+                        media.pause();
+                    }
+
+                    /*
+                     * Do not open when the click is part of a drag.
+                     * Normal click = fullscreen zoom.
+                     */
+                    if (!isDragging && Math.abs(dragDistance) < 10) {
+                        openLightbox();
+                    }
+                });
+            });
+
+            /* Keyboard support while zoomed. */
+            document.addEventListener("keydown", event => {
+                if (!lightbox.classList.contains("active")) return;
+
+                if (event.key === "Escape") {
+                    closeLightbox();
+                } else if (event.key === "ArrowRight") {
+                    lightboxGoToSlide(currentIndex + 1);
+                } else if (event.key === "ArrowLeft") {
+                    lightboxGoToSlide(currentIndex - 1);
+                }
+            });
+
+            buildLightboxDots();
+            goToSlide(0);
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
